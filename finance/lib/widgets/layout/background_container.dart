@@ -21,7 +21,7 @@ class BackgroundContainer extends StatelessWidget {
 
         Positioned.fill(
           child: Image.asset(
-            'assets/Ellipse.png',
+            'assets/images/background/Ellipse.png',
             fit: BoxFit.fitWidth,
           ),
         ),

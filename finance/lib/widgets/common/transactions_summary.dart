@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import '../../config/theme_config.dart';
+import '../../models/transactions_item_model.dart';
 
-class Recap extends StatelessWidget {
-  final double revenu;
-  final double depenses;
-  final double total;
+class TransactionsSummary extends StatelessWidget {
+  final List<TransactionItem> monthTransactions;
 
-  const Recap({
+  const TransactionsSummary({
     super.key,
-    required this.revenu,
-    required this.depenses,
-    required this.total,
+    required this.monthTransactions,
   });
+
+  double get _income => monthTransactions
+      .where((t) => t.amount > 0)
+      .fold(0.0, (sum, t) => sum + t.amount);
+  double get _expense => monthTransactions
+      .where((t) => t.amount <= 0)
+      .fold(0.0, (sum, t) => sum + t.amount);
+  double get _total => _income + _expense;
 
   @override
   Widget build(BuildContext context) {
@@ -23,34 +28,28 @@ class Recap extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Text(
-                "Revenu",
-                style: ThemeConfig.recapStyle,
-              ),
+              const Text("Revenu", style: ThemeConfig.recapStyle),
               const Spacer(),
               Text(
-                "€${revenu.toStringAsFixed(2)}",
-                style: ThemeConfig.recapStyle.copyWith(color: const Color.fromARGB(255, 32, 110, 35)),
+                "€${_income.toStringAsFixed(2)}",
+                style: ThemeConfig.recapStyle.copyWith(
+                  color: const Color.fromARGB(255, 32, 110, 35),
+                ),
               ),
             ],
           ),
           const SizedBox(height: 8),
-
           Row(
             children: [
-              const Text(
-                "Dépenses",
-                style: ThemeConfig.recapStyle,
-              ),
+              const Text("Dépenses", style: ThemeConfig.recapStyle),
               const Spacer(),
               Text(
-                "€${depenses.toStringAsFixed(2)}",
+                "€${_expense.toStringAsFixed(2)}",
                 style: ThemeConfig.recapStyle.copyWith(color: Colors.red),
               ),
             ],
           ),
           const SizedBox(height: 8),
-
           Row(
             children: [
               Text(
@@ -59,8 +58,11 @@ class Recap extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                "€${total.toStringAsFixed(2)}",
-                style: ThemeConfig.recapStyle.copyWith(color: const Color.fromARGB(255, 32, 110, 35), fontWeight: FontWeight.w900),
+                "€${_total.toStringAsFixed(2)}",
+                style: ThemeConfig.recapStyle.copyWith(
+                  color: const Color.fromARGB(255, 32, 110, 35),
+                  fontWeight: FontWeight.w900,
+                ),
               ),
             ],
           ),

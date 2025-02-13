@@ -21,7 +21,7 @@ class AppPage extends StatelessWidget {
           ),
 
           if (title == 'Transactions') 
-            Positioned.fill(
+            const Positioned.fill(
               top: 120,
               child: TransactionPage(),
             ),

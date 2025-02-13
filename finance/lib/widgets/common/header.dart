@@ -34,8 +34,6 @@ class _HeaderState extends State<Header> {
                 value: selectedValue,
                 items: const [
                   DropdownMenuItem(value: 'Carte', child: Text('Carte')),
-                  DropdownMenuItem(value: 'Espèces', child: Text('Espèces')),
-                  DropdownMenuItem(value: 'Epargne', child: Text('Epargne')),
                 ],
                 onChanged: (value) {
                   if (value != null) {

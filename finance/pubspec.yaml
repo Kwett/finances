@@ -1,5 +1,5 @@
 name: finance
-description: "A new Flutter project."
+description: "Gestion des finances personelles"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -32,6 +32,9 @@ dependencies:
     sdk: flutter
   flutter_svg: ^2.0.9
   intl: ^0.18.0
+  sqflite: ^2.3.0
+  path_provider: ^2.1.2
+
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -60,7 +63,7 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - assets/Ellipse.png
+    - assets/images/background/Ellipse.png
     - assets/icons/transaction.svg
     - assets/icons/account.svg
     - assets/icons/stats.svg
@@ -68,25 +71,25 @@ flutter:
   fonts:
     - family: Manrope
       fonts:
-        - asset: assets/Manrope-Regular.ttf
-        - asset: assets/Manrope-Medium.ttf
+        - asset: assets/fonts/Manrope-Regular.ttf
+        - asset: assets/fonts/Manrope-Medium.ttf
           weight: 500
-        - asset: assets/Manrope-SemiBold.ttf
+        - asset: assets/fonts/Manrope-SemiBold.ttf
           weight: 600
     - family: Mplus
       fonts:
-        - asset: assets/MPLUS1-Regular.ttf
-        - asset: assets/MPLUS1-Bold.ttf
+        - asset: assets/fonts/MPLUS1-Regular.ttf
+        - asset: assets/fonts/MPLUS1-Bold.ttf
           weight: 900
     - family: Magra
       fonts:
-        - asset: assets/Magra-Regular.ttf
-        - asset: assets/Magra-Bold.ttf
+        - asset: assets/fonts/Magra-Regular.ttf
+        - asset: assets/fonts/Magra-Bold.ttf
           weight: 900
     - family: Neuton
       fonts:
-        - asset: assets/Neuton-Regular.ttf
-        - asset: assets/Neuton-Bold.ttf
+        - asset: assets/fonts/Neuton-Regular.ttf
+        - asset: assets/fonts/Neuton-Bold.ttf
           weight: 900
 
   # To add assets to your application, add an assets section, like this:

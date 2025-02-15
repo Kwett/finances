@@ -1,48 +1,36 @@
-import 'database_helper.dart';
+import 'package:sqflite/sqflite.dart';
+import '../services/database_helper.dart';
 import '../models/category_model.dart';
 import '../models/category_mapper.dart';
 
 class CategoryService {
-  final DatabaseHelper dbHelper = DatabaseHelper.instance;
+  final dbHelper = DatabaseHelper.instance;
   final String table = 'categories';
 
-  Future<List<Category>> getAllCategories() async {
-    final db = await DatabaseHelper.instance.database;
-    final List<Map<String, dynamic>> maps = await db.query(table);
-    return maps.map((map) => CategoryMapper.fromDatabase(map)).toList();
-  }
-
   Future<int> addCategory(Category category) async {
-    final db = await DatabaseHelper.instance.database;
+    final db = await dbHelper.database;
     final mapper = CategoryMapper(
-      id: category.id,
       category: category.category,
-      icon: category.icon,
+      iconId: category.iconId,
+      color: category.color,
     );
-    return await db.insert(table, mapper.toDatabase());
+    try {
+      final id = await db.insert(
+        table,
+        mapper.toDatabase(),
+        conflictAlgorithm: ConflictAlgorithm.replace,
+      );
+      print('Catégorie ajoutée avec l\'id: $id');
+      return id;
+    } catch (e) {
+      print('Erreur lors de l\'ajout: $e');
+      return -1;
+    }
   }
 
-  Future<int> deleteCategory(int id) async {
-    final db = await DatabaseHelper.instance.database;
-    return await db.delete(
-      table,
-      where: 'id = ?',
-      whereArgs: [id],
-    );
-  }
-
-  Future<int> updateCategory(Category category) async {
-    final db = await DatabaseHelper.instance.database;
-    final mapper = CategoryMapper(
-      id: category.id,
-      category: category.category,
-      icon: category.icon
-    );
-    return await db.update(
-      table,
-      mapper.toDatabase(),
-      where: 'id = ?',
-      whereArgs: [category.id],
-    );
+  Future<List<Category>> getAllCategories() async {
+    final db = await dbHelper.database;
+    final result = await db.query(table);
+    return result.map((e) => CategoryMapper.fromDatabase(e)).toList();
   }
 }

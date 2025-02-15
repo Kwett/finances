@@ -1,11 +1,13 @@
 class Category {
   final int? id;
   final String category;
-  final int icon;
+  final int iconId;
+  final int color;
 
   const Category({
     this.id,
     required this.category,
-    required this.icon,
+    required this.iconId,
+    required this.color,
   });
 }

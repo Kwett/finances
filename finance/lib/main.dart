@@ -2,10 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'pages/app_page.dart';
 import 'config/theme_config.dart';
+import 'services/category_service.dart';
+import 'models/category_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeDateFormatting('fr', null);
+
+  // Test CategoryService
+  final categoryService = CategoryService();
+  final newCategory = Category(
+    category: 'TestCat',
+    iconId: 1,
+    color: Colors.blue.value,
+  );
+
+  await categoryService.addCategory(newCategory);
+  final allCategories = await categoryService.getAllCategories();
+  print('Catégories récupérées: ${allCategories.map((c) => c.category).toList()}');
+
   runApp(const MyApp());
 }
 
@@ -36,7 +51,7 @@ class _MainScreenState extends State<MainScreen> {
     const AppPage(title: 'Transactions', icon: 'assets/icons/transaction.svg', isDropdown: true),
     const AppPage(title: 'Vos Comptes', icon: 'assets/icons/account.svg', isDropdown: false),
     const AppPage(title: 'Statistiques', icon: 'assets/icons/stats.svg', isDropdown: false),
-  ];
+    ];
 
   void _onItemTapped(int index) {
     setState(() {

@@ -3,19 +3,22 @@ import '../models/category_model.dart' as model;
 class CategoryMapper {
   final int? id;
   final String category;
-  final int icon;
+  final int iconId;
+  final int color;
 
   CategoryMapper({
     this.id,
     required this.category,
-    required this.icon
+    required this.iconId,
+    required this.color
   });
 
     Map<String, dynamic> toDatabase() {
     return {
       'id': id,
       'category': category,
-      'icon': icon,
+      'icon_id': iconId,
+      'color': color
     };
   }
 
@@ -23,7 +26,8 @@ class CategoryMapper {
     return model.Category(
       id: map['id'] as int?,
       category: map['category'] as String,
-      icon: map['icon'] as int,
+      iconId: map['icon_id'] as int,
+      color: map['color'] as int
     );
   }
 }

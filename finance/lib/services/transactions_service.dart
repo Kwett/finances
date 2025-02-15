@@ -21,7 +21,7 @@ class TransactionService {
       description: transaction.description,
       amount: transaction.amount,
       date: transaction.date,
-      icon: transaction.icon,
+      categoryId: transaction.categoryId,
     );
     return await db.insert('transactions', mapper.toDatabase());
   }
@@ -44,7 +44,7 @@ class TransactionService {
       description: transaction.description,
       amount: transaction.amount,
       date: transaction.date,
-      icon: transaction.icon,
+      categoryId: transaction.categoryId,
     );
     return await db.update(
       'transactions',

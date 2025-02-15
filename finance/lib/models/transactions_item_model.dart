@@ -5,7 +5,7 @@ class TransactionItem {
   final String description;
   final double amount;
   final String date;
-  final int icon;
+  final int categoryId;
 
   const TransactionItem({
     this.id,
@@ -14,7 +14,7 @@ class TransactionItem {
     required this.description,
     required this.amount,
     required this.date,
-    required this.icon,
+    required this.categoryId,
   });
 
   TransactionItem copyWith({
@@ -24,7 +24,7 @@ class TransactionItem {
     String? description,
     double? amount,
     String? date,
-    int? icon,
+    int? categoryId,
   }) {
     return TransactionItem(
       id: id ?? this.id,
@@ -33,7 +33,7 @@ class TransactionItem {
       description: description ?? this.description,
       amount: amount ?? this.amount,
       date: date ?? this.date,
-      icon: icon ?? this.icon,
+      categoryId: categoryId ?? this.categoryId,
     );
   }
 }

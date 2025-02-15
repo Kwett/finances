@@ -7,7 +7,7 @@ class TransactionsMapper {
   final String description;
   final double amount;
   final String date;
-  final int icon;
+  final int categoryId;
 
   TransactionsMapper({
     this.id,
@@ -16,7 +16,7 @@ class TransactionsMapper {
     required this.description,
     required this.amount,
     required this.date,
-    required this.icon,
+    required this.categoryId,
   });
 
   Map<String, dynamic> toDatabase() {
@@ -27,7 +27,7 @@ class TransactionsMapper {
       'description': description,
       'amount': amount,
       'date': date,
-      'icon': icon,
+      'category_id': categoryId,
     };
   }
 
@@ -39,7 +39,7 @@ class TransactionsMapper {
       description: map['description'] as String,
       amount: (map['amount'] as num).toDouble(),
       date: map['date'] as String,
-      icon: map['icon'] as int,
+      categoryId: map['category_id'] as int,
     );
   }
 }

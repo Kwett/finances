@@ -83,7 +83,7 @@ class _AddTransactionFormState extends State<AddTransactionForm> with SingleTick
         description: widget.initialTransaction?.description ?? '',
         amount: _isExpense ? -double.parse(_amountController.text) : double.parse(_amountController.text),
         date: _selectedDate.toIso8601String(),
-        icon: _selectedCategory!.iconId,
+        categoryId: _selectedCategory!.id ?? 0,
       );
       widget.onAdd(transaction);
       Navigator.of(context).pop();

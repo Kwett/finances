@@ -33,6 +33,16 @@ class DatabaseHelper {
       );
     ''');
 
+
+
+    await db.execute('''
+      CREATE TABLE categories (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        category TEXT NOT NULL,
+        icon INTEGER NOT NULL
+      );
+    ''');
+
     await db.execute('''
       CREATE TABLE transactions (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -41,8 +51,9 @@ class DatabaseHelper {
         description TEXT NOT NULL,
         amount REAL NOT NULL,
         date TEXT NOT NULL,
-        icon INTEGER NOT NULL,
-        FOREIGN KEY (account_id) REFERENCES accounts(id) ON DELETE CASCADE
+        category_id INTEGER NOT NULL,
+        FOREIGN KEY (account_id) REFERENCES accounts(id) ON DELETE CASCADE,
+        FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
       );
     ''');
   }

@@ -86,6 +86,10 @@ class _TransactionPageState extends State<TransactionPage> {
                         );
                       },
                     ),
+                    const SizedBox(
+                      width: double.infinity,
+                      height: 128,
+                    )
                   ],
                 ),
               ),

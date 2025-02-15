@@ -130,7 +130,7 @@ class TransactionsList extends StatelessWidget {
           dense: true,
           contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 2.0),
           minVerticalPadding: 0,
-          leading: Icon(IconData(transaction.icon), color: Colors.grey[700], size: 24),
+          leading: Icon(IconData(transaction.icon, fontFamily: 'MaterialIcons'), color: Colors.grey[700], size: 24),
           title: Text(
             transaction.name,
             style: ThemeConfig.recapStyle.copyWith(fontSize: 16),
